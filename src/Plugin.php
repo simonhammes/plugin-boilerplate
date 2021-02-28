@@ -52,9 +52,6 @@ class Plugin {
 	 */
 	public function __construct( ConfigInterface $config ) {
 		$this->processConfig( $config );
-		
-		$foo = new Foo();
-		$output = $foo->bar();
 	}
 
 	/**
@@ -64,7 +61,13 @@ class Plugin {
 	 */
 	public function run(): void {
 		\add_action( 'plugins_loaded', [ $this, 'load_textdomain' ] );
+		add_action( 'init', [$this, 'action1']);
 	}
+	
+	public function action1() {
+                $foo = new Foo();
+		$output = $foo->bar();
+	} 
 
 	/**
 	 * Load the plugin text domain.
