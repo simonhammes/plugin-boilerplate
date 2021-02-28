@@ -23,7 +23,7 @@ class FooTest extends WP_UnitTestCase {
 	
 	protected static $user_id;
 
-	public static function wpSetUpBeforeClass( WP_UnitTest_Factory $factory ) {
+	public static function wpSetUpBeforeClass( \WP_UnitTest_Factory $factory ) {
 		self::$user_id = $factory->user->create(
 			array(
 				'role'   => 'administrator',
