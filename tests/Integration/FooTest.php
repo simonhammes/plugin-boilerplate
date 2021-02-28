@@ -20,6 +20,18 @@ use WP_UnitTestCase;
  * Foo test case.
  */
 class FooTest extends WP_UnitTestCase {
+	
+	protected static $user_id;
+
+	public static function wpSetUpBeforeClass( WP_UnitTest_Factory $factory ) {
+		self::$user_id = $factory->user->create(
+			array(
+				'role'   => 'administrator',
+				'locale' => 'de_DE',
+			)
+		);
+	}
+	
 	/**
 	 * A single example test.
 	 */
@@ -85,13 +97,13 @@ class FooTest extends WP_UnitTestCase {
 		
 		$a = do_action('plugins_loaded');
 		
-		var_dump($GLOBALS['l10n']);
+		//var_dump($GLOBALS['l10n']);
 		
 		
 		
-		var_dump(is_textdomain_loaded('plugin_slug'));
+		//var_dump(is_textdomain_loaded('plugin_slug'));
 		
-		var_dump($a);
+		//var_dump($a);
 		
 		// self::assertTrue(is_textdomain_loaded('plugin_slug'));
 		
@@ -104,6 +116,16 @@ class FooTest extends WP_UnitTestCase {
 		static::assertTrue( ( new Testee() )->is_true() );
 		
 		static::assertSame('Foo::bar()', $foo->bar());
+	}
+	
+	public function test_bar_returns_correct_value_if_user_is_logged_in(): void {
+		wp_set_current_user( self::$user_id );
+		
+		$foo = new Testee();
+		// Replace this with some actual integration testing code.
+		static::assertTrue( ( new Testee() )->is_true() );
+		
+		static::assertSame('Logged in', $foo->bar());
 	}
 	
 }
