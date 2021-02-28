@@ -53,7 +53,7 @@ jobs:
   test-infection:
     name: Infection
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout
@@ -70,17 +70,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer install --prefer-dist --no-progress
+          composer install --no-progress
           composer require pcov/clobber --dev
           vendor/bin/pcov clobber
         # See see https://dev.to/swashata/setup-php-pcov-for-5-times-faster-phpunit-code-coverage-3d9c
 
       - name: Setup Problem Matchers for PHPUnit
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-
-      - name: Run infection tests
-        run: composer infection
-        continue-on-error: true
       
       - name: Start MySQL Service
         run: sudo systemctl start mysql.service
