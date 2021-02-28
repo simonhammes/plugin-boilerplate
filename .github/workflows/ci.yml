@@ -93,7 +93,7 @@ jobs:
         run: composer integration
         
       - name: Run infection on integration tests
-        run: ./vendor/bin/infection --test-framework-options="--testsuite integration"
+        run: ./vendor/bin/infection
       
       - name: Archive results
         uses: actions/upload-artifact@v2
