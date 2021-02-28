@@ -16,7 +16,7 @@ namespace Gamajo\PluginSlug\Tests;
 $plugin_slug_argv = $GLOBALS['argv'];
 $plugin_slug_key  = (int) array_search( '--testsuite', $plugin_slug_argv, true );
 
-if ( $plugin_slug_key && 'integration' === $plugin_slug_argv[ $plugin_slug_key + 1 ] ) {
+// if ( $plugin_slug_key && 'integration' === $plugin_slug_argv[ $plugin_slug_key + 1 ] ) {
 	$plugin_slug_tests_dir = getenv( 'WP_TESTS_DIR' );
 
 	if ( ! $plugin_slug_tests_dir ) {
@@ -38,4 +38,4 @@ if ( $plugin_slug_key && 'integration' === $plugin_slug_argv[ $plugin_slug_key +
 
 	// Start up the WP testing environment.
 	require $plugin_slug_tests_dir . '/includes/bootstrap.php';
-}
+// }
