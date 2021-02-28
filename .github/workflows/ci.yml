@@ -94,6 +94,12 @@ jobs:
         
       - name: Run infection on integration tests
         run: ./vendor/bin/infection --test-framework-options="--testsuite integration"
+      
+      - name: Archive results
+        uses: actions/upload-artifact@v2
+        with:
+          name: infection-log
+          path: logs/infection.log
 
   test:
     name: Unit and Integration tests
