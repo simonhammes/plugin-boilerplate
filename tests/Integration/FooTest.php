@@ -65,4 +65,32 @@ class FooTest extends WP_UnitTestCase {
 		
 		static::assertIsInt( has_action( 'init', [ $plugin, 'action1' ] ) );
 	}
+	
+	public function test_plugin_textdomain_is_loaded(): void {
+		$mock_config = [
+			'Settings' => [],
+			'Plugin'   => [
+				'textdomain'    => 'apple',
+				'languages_dir' => 'banana',
+			],
+		];
+
+		$mock_config = ConfigFactory::createFromArray( $mock_config );
+		
+		// Replace this with some actual integration testing code.
+		$plugin = new \Gamajo\PluginSlug\Plugin($mock_config);
+		
+		$plugin->run();
+		$plugin->load_textdomain();
+		
+		var_dump($GLOBALS['l10n']);
+		
+		
+		
+		var_dump(is_textdomain_loaded('plugin_slug'));
+		
+		self::assertTrue(is_textdomain_loaded('plugin_slug'));
+		
+		static::assertIsInt( has_action( 'plugins_loaded', [ $plugin, 'load_textdomain' ] ), 'Loading textdomain is not hooked in correctly.' );
+	}
 }
