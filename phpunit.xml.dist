@@ -6,7 +6,7 @@
 		 beStrictAboutOutputDuringTests="true"
 		 beStrictAboutTodoAnnotatedTests="true"
 		 colors="true"
-		 defaultTestSuite="unit"
+		 defaultTestSuite="integration"
 		 verbose="true">
 	<testsuites>
 		<testsuite name="unit">
