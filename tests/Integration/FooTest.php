@@ -93,7 +93,7 @@ class FooTest extends WP_UnitTestCase {
 		
 		var_dump($a);
 		
-		self::assertTrue(is_textdomain_loaded('plugin_slug'));
+		// self::assertTrue(is_textdomain_loaded('plugin_slug'));
 		
 		static::assertIsInt( has_action( 'plugins_loaded', [ $plugin, 'load_textdomain' ] ), 'Loading textdomain is not hooked in correctly.' );
 	}
