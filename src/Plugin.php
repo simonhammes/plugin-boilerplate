@@ -52,6 +52,9 @@ class Plugin {
 	 */
 	public function __construct( ConfigInterface $config ) {
 		$this->processConfig( $config );
+		
+		$foo = new Foo();
+		$output = $foo->bar();
 	}
 
 	/**
