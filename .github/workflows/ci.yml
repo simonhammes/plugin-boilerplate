@@ -60,10 +60,10 @@ jobs:
         uses: actions/checkout@master
 
       # This should only be necessary until ubuntu-latest includes PHP 7.4 by default (currently PHP 7.3.12).
-      - name: Setup PHP 7.4
+      - name: Setup PHP 8.0
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.0'
           coverage: pcov
           # https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions
           extensions: curl, dom, exif, fileinfo, hash, json, mbstring, mysqli, libsodium, openssl, pcre, imagick, xml, zip
@@ -88,7 +88,7 @@ jobs:
         run: composer integration
         
       - name: Run infection on integration tests
-        run: ./vendor/bin/infection
+        run: ./vendor/bin/infection --log-verbosity=all
       
       - name: Archive results
         uses: actions/upload-artifact@v2
