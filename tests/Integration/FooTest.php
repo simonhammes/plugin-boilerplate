@@ -13,6 +13,7 @@ declare( strict_types = 1 );
 namespace Gamajo\PluginSlug\Tests\Integration;
 
 use Gamajo\PluginSlug\Foo as Testee;
+use BrightNucleus\Config\ConfigFactory;
 use WP_UnitTestCase;
 
 /**
@@ -25,5 +26,24 @@ class FooTest extends WP_UnitTestCase {
 	public function test_foo(): void {
 		// Replace this with some actual integration testing code.
 		static::assertTrue( ( new Testee() )->is_true() );
+	}
+	
+	public function test_action_to_plugin_textdomain_is_added(): void {
+		$mock_config = [
+			'Settings' => [],
+			'Plugin'   => [
+				'textdomain'    => 'apple',
+				'languages_dir' => 'banana',
+			],
+		];
+
+		$mock_config = ConfigFactory::createFromArray( $mock_config );
+		
+		// Replace this with some actual integration testing code.
+		$plugin = new \Gamajo\PluginSlug\Plugin($mock_config);
+		
+		$plugin->run();
+		
+		static::assertNotFalse( has_action( 'plugins_loaded', [ $plugin, 'load_textdomain' ] ), 'Loading textdomain is not hooked in correctly.' );
 	}
 }
