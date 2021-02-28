@@ -83,11 +83,15 @@ class FooTest extends WP_UnitTestCase {
 		$plugin->run();
 		$plugin->load_textdomain();
 		
+		$a = do_action('plugins_loaded');
+		
 		var_dump($GLOBALS['l10n']);
 		
 		
 		
 		var_dump(is_textdomain_loaded('plugin_slug'));
+		
+		var_dump($a);
 		
 		self::assertTrue(is_textdomain_loaded('plugin_slug'));
 		
