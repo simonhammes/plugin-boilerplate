@@ -22,6 +22,9 @@ class Foo {
 	 * @return string
 	 */
 	public function bar(): string {
+		if( is_user_logged_in() ) {
+                     return 'Logged in';
+		}
 		return 'Foo::bar()';
 	}
 
