@@ -97,4 +97,13 @@ class FooTest extends WP_UnitTestCase {
 		
 		static::assertIsInt( has_action( 'plugins_loaded', [ $plugin, 'load_textdomain' ] ), 'Loading textdomain is not hooked in correctly.' );
 	}
+	
+	public function test_bar_returns_correct_value_if_user_is_not_logged_in(): void {
+		$foo = new Testee();
+		// Replace this with some actual integration testing code.
+		static::assertTrue( ( new Testee() )->is_true() );
+		
+		static::assertSame('Foo::bar()', $foo->bar());
+	}
+	
 }
